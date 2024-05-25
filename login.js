@@ -4,6 +4,7 @@ $(document).ready(function() {
         
         let username = $('#username').val();
         let password = $('#password').val();
+        const h1 = document.getElementById('welcome');
         
         $.ajax({
             url: api_url + '/login', // Adjust this URL to your backend endpoint
@@ -16,7 +17,8 @@ $(document).ready(function() {
             success: function(response) {
                 if (response.success) {
                     $('#message').text('Login successful!').css('color', 'green');
-                   location.assign('/');
+                    location.assign('/success.html');
+                    h1.textContent = `Hello, ${username}`;
                 } else {
                     $('#message').text('Invalid username or password.');
                 }

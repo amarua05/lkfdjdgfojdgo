@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Subforum - Linear Algebra</title>
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="topics.css"> <!-- Your custom CSS file -->
+    <!-- jQuery -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <!-- Global JavaScript file -->
+    <script src="global.js"></script>
+    <script src="posts.js"></script>
+    <style>
+        /* Initially hide the textbox */
+        #textbox {
+            display: none;
+        }
+        #submitButton{
+            display: none
+        }
+        #createButton{
+            display:block
+        }
+        #titlebox{
+            display:none
+        }
+    </style>
+    <script>
+        function showTextbox() {
+            var textbox = document.getElementById('textbox');
+            textbox.style.display = 'block';
+            var submitButton = document.getElementById('submitButton');
+            submitButton.style.display = 'block';
+            var createButton = document.getElementById('createButton');
+            createButton.style.display = 'none';
+            var titlebox = document.getElementById('titlebox');
+            titlebox.style.display = 'block'
+        }
+    </script>
+    <script>
+        $(document).ready(function() {
+            // Function to handle form submission
+            $('#submitButton').on('click', function(event) {
+                event.preventDefault(); // Prevent the default form submission
+
+                // Get form inputs
+                var title = $('#titlebox').val();
+                var content = $('#textbox').val();
+                var userId = '6650fae254155740c0a1c20d';
+                var topic_id = '665214c0d11f0c369ce74cfe';
+
+                // Send POST request to '/set-post' endpoint
+                $.ajax({
+                    url: api_url + '/set-post',
+                    method: 'POST',
+                    contentType: 'application/json',
+                    data: JSON.stringify({ title: title, content: content, userId: userId, topic_id: topic_id }),
+                    success: function(response) {
+                        // Handle success response
+                        console.log('Post submitted successfully:', response);
+                    },
+                    error: function(xhr, status, error) {
+                        // Handle error response
+                        console.error('Error submitting post:', error);
+                    }
+                });
+            });
+        });
+    </script>
+</head>
+<body>
+    <div class="container">
+        <h1 class="mt-4 mb-4">Subforum - Linear Algebra</h1>
+        <button onclick="showTextbox()" id="createButton">Create new post</button>
+        <input type="text" id="titlebox" placeholder="Enter title here">
+        <input type="text" id="textbox" placeholder="Enter text here">
+        <button onclick="" id="submitButton">Submit</button>
+        <table id="tablecontainer1" class="table table-striped">
+            <thead class="thead-dark">
+                <tr>
+                    <th>ID</th>
+                    <th>Post Name</th>
+                    <th>Post Content</th>
+                    <th>Posted By</th>
+                </tr>
+            </thead>
+            <tbody id="table-body">
+                <!-- Data will be inserted here -->
+            </tbody>
+        </table>
+    </div>
+
+    <!-- Bootstrap JS -->
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <!-- Your custom JavaScript file -->
+    
+</body>
+</html>
+

@@ -16,9 +16,10 @@ $(document).ready(function() {
             }),
             success: function(response) {
                 if (response.success) {
+                    h1.textContent = `Hello, ${username}`;
                     $('#message').text('Login successful!').css('color', 'green');
                     location.assign('/success.html');
-                    h1.textContent = `Hello, ${username}`;
+                    
                 } else {
                     $('#message').text('Invalid username or password.');
                 }

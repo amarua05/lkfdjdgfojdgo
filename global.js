@@ -1,1 +1,1 @@
-let api_url = 'https://0ec5-80-77-159-26.ngrok-free.app';
+let api_url = 'https://06f0-80-77-159-26.ngrok-free.app';
